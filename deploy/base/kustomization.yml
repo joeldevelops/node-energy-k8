@@ -1,0 +1,13 @@
+namePrefix: node-
+
+configMapGenerator:
+  - name: env
+    envs:
+      - application.env
+
+commonLabels:
+  app: node
+
+resources:
+  - deployment.yml
+  - service.yml

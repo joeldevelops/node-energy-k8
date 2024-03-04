@@ -1,0 +1,25 @@
+namePrefix: rpi-
+
+commonLabels:
+  env: production
+  provider: kustomize
+
+namespace: node
+
+generatorOptions: {}
+
+configMapGenerator:
+  - behavior: merge
+    envs:
+      - application.env
+    name: node-env
+
+images:
+  - name: ghcr.io/joeldevelops/node-energy-k8
+    newTag: c90d28862937d80de6ef95f30e17f09c409b9cf0
+
+resources:
+  - ../../base
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
