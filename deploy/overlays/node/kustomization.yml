@@ -4,7 +4,7 @@ commonLabels:
   env: production
   provider: kustomize
 
-namespace: node
+namespace: napi
 
 generatorOptions: {}
 
@@ -16,10 +16,11 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/joeldevelops/node-energy-k8
-    newTag: c90d28862937d80de6ef95f30e17f09c409b9cf0
+    newTag: v0.0.1
 
 resources:
   - ../../base
+  - ingress.yml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
