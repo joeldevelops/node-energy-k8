@@ -16,7 +16,7 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/joeldevelops/node-energy-k8
-    newTag: v0.0.1
+    newTag: v0.0.5
 
 resources:
   - ../../base

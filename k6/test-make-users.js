@@ -1,5 +1,6 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
+import * as utils from './utils.js';
 
 export const options = {
   // A number specifying the number of VUs to run concurrently.
@@ -20,7 +21,7 @@ export const options = {
   //     projectID: "",
   //     // The name of the test in the k6 Cloud UI.
   //     // Test runs with the same name will be grouped.
-  //     name: "sample.js"
+  //     name: "make-users.js"
   //   }
   // },
 
@@ -56,6 +57,15 @@ export const options = {
 // about authoring k6 scripts.
 //
 export default function() {
-  http.get('https://test.k6.io');
+  const host = 'http://nano-pi.local:30123';
+  const createPayload = {
+    name: utils.getRandomName(),
+    email: utils.getRandomEmail(),
+  };
+  http.post(`${host}/api/v1/users`, JSON.stringify(createPayload), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   sleep(1);
 }

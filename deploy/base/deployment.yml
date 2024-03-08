@@ -20,10 +20,10 @@ spec:
           image: "ghcr.io/joeldevelops/node-energy-k8"
           resources:
             limits:
-              memory: 384Mi
+              memory: 256Mi
               cpu: 300m
             requests:
-              memory: 256Mi
+              memory: 128Mi
               cpu: 150m
           ports:
             - name: api
@@ -31,11 +31,11 @@ spec:
 
           livenessProbe:
             httpGet:
-              path: /liveness
+              path: api/v1/liveness
               port: api
           startupProbe:
             httpGet:
-              path: /readiness
+              path: api/v1/readiness
               port: api
             failureThreshold: 6
             periodSeconds: 10

@@ -1,5 +1,6 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
+import * as utils from './utils.js';
 
 export const options = {
   // A number specifying the number of VUs to run concurrently.
@@ -56,6 +57,5 @@ export const options = {
 // about authoring k6 scripts.
 //
 export default function() {
-  http.get('https://test.k6.io');
   sleep(1);
 }
