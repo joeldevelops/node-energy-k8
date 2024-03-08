@@ -41,6 +41,19 @@ export class ComicsService {
     });
   }
 
+  async findRandomComic() {
+    const comics = await this.prisma.comic.findMany({
+      take: 1,
+      orderBy: {
+        id: 'desc',
+      },
+    });
+
+    if (comics.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * comics.length);
+    return comics[randomIndex];
+  }
+
   // We want to simulate a long running operation which uses CPU.
   // So here is an implementation of a Fibonacci sequence calculator with inefficiencies.
   // It will be called from the generate-report endpoint to simulate a big report.

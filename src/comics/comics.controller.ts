@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ComicsService } from './comics.service';
 import { Prisma, Comic } from '@prisma/client';
 
@@ -7,13 +15,25 @@ export class ComicsController {
   constructor(private readonly comicsService: ComicsService) {}
 
   @Post()
-  async createComic(@Body() comicData: Prisma.ComicCreateInput): Promise<Comic> {
-    return this.comicsService.createComic(comicData);
+  async createComic(
+    @Body() comicData: { name: string; author: string; userId: number },
+  ): Promise<Comic> {
+    // Body should be: { name, author, userId }
+    return this.comicsService.createComic({
+      name: comicData.name,
+      author: comicData.author,
+      user: { connect: { id: comicData.userId } },
+    });
   }
 
   @Get()
   async findAllComics(): Promise<Comic[]> {
     return this.comicsService.findAllComics();
+  }
+
+  @Get('/random')
+  async findRandomComic(): Promise<Comic | null> {
+    return this.comicsService.findRandomComic();
   }
 
   @Get('/user/:userId')
@@ -40,7 +60,9 @@ export class ComicsController {
   @Get('/generate-report/:number')
   async calculateFibonacci(@Param('number') number: string): Promise<string> {
     // Simulation of a long running CPU bound operation
-    const result = await this.comicsService.calculateHighFibonacci(Number(number));
+    const result = await this.comicsService.calculateHighFibonacci(
+      Number(number),
+    );
     return `Fibonacci result for ${number} is ${result}`;
   }
 }

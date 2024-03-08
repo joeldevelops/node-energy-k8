@@ -7,13 +7,24 @@ export class CollectionsController {
   constructor(private readonly collectionsService: CollectionsService) {}
 
   @Post()
-  async createCollection(@Body() collectionData: Prisma.CollectionCreateInput): Promise<Collection> {
-    return this.collectionsService.createCollection(collectionData);
+  async createCollection(
+    @Body() collectionData: { name: string, comicId: number, userId: number }
+    ): Promise<Collection> {
+    return this.collectionsService.createCollection({
+      name: collectionData.name,
+      comics: { connect: { id: collectionData.comicId } },
+      user: { connect: { id: collectionData.userId } },
+    });
   }
 
   @Get()
   async findAllCollections(): Promise<Collection[]> {
     return this.collectionsService.findAllCollections();
+  }
+
+  @Get('/random')
+  async findRandomCollection(): Promise<Collection | null> {
+    return this.collectionsService.findRandomCollection();
   }
 
   @Get('/user/:userId')

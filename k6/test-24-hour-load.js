@@ -1,6 +1,8 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
-import * as utils from './utils.js';
+import * as act from './actions.js';
+
+// TODO: Implement a test that runs for 24 hours
 
 export const options = {
   // A number specifying the number of VUs to run concurrently.

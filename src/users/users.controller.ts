@@ -16,6 +16,11 @@ export class UsersController {
     return this.usersService.users();
   }
 
+  @Get('/random')
+  async findRandomUser(): Promise<User | null> {
+    return this.usersService.findRandomUser();
+  }
+
   @Get(':id')
   async findUserById(@Param('id') id: string): Promise<User | null> {
     return this.usersService.user({ id: Number(id) });

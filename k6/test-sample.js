@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
-import * as utils from './utils.js';
+import * as act from './actions.js';
 
 export const options = {
   stages: [
@@ -59,48 +59,59 @@ export const options = {
 //
 export default function() {
   // Pick a random crud action to perform
-  const actions = ['create', 'read', 'compute'];
+  const actions = [
+    'user-create', 'user-read', 'user-update', 'user-del', 
+    'compute', 'comic-create', 'comic-read', 'comic-update', 'comic-del',
+    'collection-create', 'collection-read', 'collection-update', 'collection-del',
+  ];
   const action = actions[Math.floor(Math.random() * actions.length)];
 
   // Pick a random user to perform the action on
-  const userId = Math.floor(Math.random() * 1000);
 
   const host = 'http://nano-pi.local:30123';
 
-  const num = 1000;
+  const num = 800;
 
   // Perform the action
   switch (action) {
-    case 'create':
-      const createPayload = {
-        name: utils.getRandomName(),
-        email: utils.getRandomEmail(),
-      };
-      http.post(`${host}/api/v1/users`, JSON.stringify(createPayload), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    case 'user-create':
+      act.userCreate(host, http);
       break;
-    case 'read':
-      http.get(`${host}/api/v1/users/${userId}`);
+    case 'user-read':
+      act.userRead(host, http);
       break;
-    case 'update':
-      const updatePayload = {
-        name: utils.getRandomName(),
-        email: utils.getRandomEmail(),
-      };
-      http.put(`${host}/api/v1/users/${userId}`, JSON.stringify(updatePayload), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    case 'user-update':
+      act.userUpdate(host, http);
       break;
-    case 'delete':
-      http.del(`${host}/api/v1/users/${userId}`);
+    case 'user-del':
+      act.userDelete(host, http);
       break;
     case 'compute':
-      http.get(`${host}/api/v1/comics/generate-report/${num}`);
+      act.comicsGenerateReport(host, http, num);
+      break;
+    case 'comic-create':
+      act.comicCreate(host, http);
+      break;
+    case 'comic-read':
+      act.comicRead(host, http);
+      break;
+    case 'comic-update':
+      act.comicUpdate(host, http);
+      break;
+    case 'comic-del':
+      act.comicDelete(host, http);
+      break;
+    case 'collection-create':
+      act.collectionCreate(host, http);
+      break;
+    case 'collection-read':
+      act.collectionRead(host, http);
+      break;
+    case 'collection-update':
+      act.collectionUpdate(host, http);
+      break;
+    case 'collection-del':
+      act.collectionDelete(host, http);
       break;
   }
 

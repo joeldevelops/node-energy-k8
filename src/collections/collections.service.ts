@@ -40,4 +40,17 @@ export class CollectionsService {
       where,
     });
   }
+
+  async findRandomCollection() {
+    const collections = await this.prisma.collection.findMany({
+      take: 1,
+      orderBy: {
+        id: 'desc',
+      },
+    });
+
+    if (collections.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * collections.length);
+    return collections[randomIndex];
+  }
 }

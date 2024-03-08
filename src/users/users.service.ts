@@ -40,4 +40,17 @@ export class UsersService {
       where,
     });
   }
+
+  async findRandomUser() {
+    // Example for PostgreSQL
+    const users = await this.prisma.user.findMany({
+      take: 1,
+      orderBy: {
+        id: 'desc',
+      },
+    });
+    if (users.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * users.length);
+    return users[randomIndex];
+  }
 }
