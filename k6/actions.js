@@ -134,8 +134,15 @@ export const collectionRead = (host, http) => {
 
 export const collectionUpdate = (host, http) => {
   // First, get a random collection
-  const res = http.get(`${host}/api/v1/collections/random`);
-  const collectionId = res.json().id;
+  let collectionId;
+  try {
+    const res = http.get(`${host}/api/v1/collections/random`);
+    collectionId = res.json().id;
+  } catch (e) {
+    collectionCreate(host, http);
+    const res = http.get(`${host}/api/v1/collections/random`);
+    collectionId = res.json().id;
+  }
 
   const updatePayload = {
     name: utils.getRandomName(),
@@ -149,8 +156,15 @@ export const collectionUpdate = (host, http) => {
 
 export const collectionDelete = (host, http) => {
   // First, get a random collection
-  const res = http.get(`${host}/api/v1/collections/random`);
-  const collectionId = res.json().id;
+  let collectionId;
+  try {
+    const res = http.get(`${host}/api/v1/collections/random`);
+    collectionId = res.json().id;
+  } catch (e) {
+    collectionCreate(host, http);
+    const res = http.get(`${host}/api/v1/collections/random`);
+    collectionId = res.json().id;
+  }
 
   http.del(`${host}/api/v1/collections/${collectionId}`);
 }

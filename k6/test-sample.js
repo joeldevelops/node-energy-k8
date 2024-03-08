@@ -70,7 +70,7 @@ export default function() {
 
   const host = 'http://nano-pi.local:30123';
 
-  const num = 800;
+  const num = 37;
 
   // Perform the action
   switch (action) {

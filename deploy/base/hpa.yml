@@ -8,7 +8,7 @@ spec:
     kind: Deployment
     name: node-deployment
   minReplicas: 4
-  maxReplicas: 15
+  maxReplicas: 12
   metrics:
   - type: Resource
     resource:
