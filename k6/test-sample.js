@@ -90,16 +90,16 @@ export default function() {
       act.comicsGenerateReport(host, http, num);
       break;
     case 'comic-create':
-      act.comicCreate(host, http);
+      act.comicsCreate(host, http);
       break;
     case 'comic-read':
-      act.comicRead(host, http);
+      act.comicsRead(host, http);
       break;
     case 'comic-update':
-      act.comicUpdate(host, http);
+      act.comicsUpdate(host, http);
       break;
     case 'comic-del':
-      act.comicDelete(host, http);
+      act.comicsDelete(host, http);
       break;
     case 'collection-create':
       act.collectionCreate(host, http);
