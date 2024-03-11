@@ -11,3 +11,20 @@ helm install postgresql oci://registry-1.docker.io/bitnamicharts/postgresql \
 ```
 
 postgresql.default.svc.cluster.local - Read/Write connection
+
+## Install for PG:
+```
+helm repo add stable https://charts.helm.sh/stable
+helm repo update
+helm install postgres \
+  --set "image.repository=postgres" \
+  --set "image.tag=15.0" \
+  --set "postgresqlDataDir=/data/pgdata" \
+  --set "persistence.mountPath=/data/" \
+  --set "postgresqlDatabase=default" \
+  --set "persistence.existingClaim='default'" \
+  --set "persistence.size=4Gi" \
+  --set "-set global.storageClass='default'" \
+  --namespace napi \
+  stable/postgresql
+```

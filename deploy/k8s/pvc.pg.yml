@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3.5Gi # Adjust the size according to your needs
+  storageClassName: default # Use your cluster's StorageClass; set to "" to use the default StorageClass
