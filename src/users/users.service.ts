@@ -49,7 +49,7 @@ export class UsersService {
         id: 'desc',
       },
     });
-    if (users.length === 0) return null;
+    if (users.length === 0) return { id: -1, name: 'No users found' };
     const randomIndex = Math.floor(Math.random() * users.length);
     return users[randomIndex];
   }

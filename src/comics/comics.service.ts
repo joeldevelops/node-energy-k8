@@ -49,7 +49,7 @@ export class ComicsService {
       },
     });
 
-    if (comics.length === 0) return null;
+    if (comics.length === 0) return { id: -1, name: 'No comics found' };
     const randomIndex = Math.floor(Math.random() * comics.length);
     return comics[randomIndex];
   }

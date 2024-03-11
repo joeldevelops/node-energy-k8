@@ -49,7 +49,7 @@ export class CollectionsService {
       },
     });
 
-    if (collections.length === 0) return null;
+    if (collections.length === 0) return { id: -1, name: 'No collections found' };
     const randomIndex = Math.floor(Math.random() * collections.length);
     return collections[randomIndex];
   }

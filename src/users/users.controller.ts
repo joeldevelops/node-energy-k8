@@ -17,7 +17,7 @@ export class UsersController {
   }
 
   @Get('/random')
-  async findRandomUser(): Promise<User | null> {
+  async findRandomUser(): Promise<User | { id: number, name: string }> {
     return this.usersService.findRandomUser();
   }
 

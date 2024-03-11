@@ -23,7 +23,7 @@ export class CollectionsController {
   }
 
   @Get('/random')
-  async findRandomCollection(): Promise<Collection | null> {
+  async findRandomCollection(): Promise<Collection | { id: number, name: string }> {
     return this.collectionsService.findRandomCollection();
   }
 

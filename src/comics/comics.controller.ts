@@ -32,7 +32,7 @@ export class ComicsController {
   }
 
   @Get('/random')
-  async findRandomComic(): Promise<Comic | null> {
+  async findRandomComic(): Promise<Comic | { id: number, name: string }> {
     return this.comicsService.findRandomComic();
   }
 

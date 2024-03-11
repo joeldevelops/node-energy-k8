@@ -37,6 +37,10 @@ export const userDelete = (host, http) => {
   const res = http.get(`${host}/api/v1/users/random`);
   const userId = res.json().id;
 
+  if (!userId || userId < 0) {
+    return;
+  }
+
   http.del(`${host}/api/v1/users/${userId}`);
 }
 
@@ -81,6 +85,10 @@ export const comicsDelete = (host, http) => {
   // First, get a random comic
   const res = http.get(`${host}/api/v1/comics/random`);
   const comicId = res.json().id;
+
+  if (!comicId || comicId < 0) {
+    return;
+  }
 
   http.del(`${host}/api/v1/comics/${comicId}`);
 }
@@ -164,6 +172,10 @@ export const collectionDelete = (host, http) => {
     collectionCreate(host, http);
     const res = http.get(`${host}/api/v1/collections/random`);
     collectionId = res.json().id;
+  }
+
+  if (!collectionId || collectionId < 0) {
+    return;
   }
 
   http.del(`${host}/api/v1/collections/${collectionId}`);
