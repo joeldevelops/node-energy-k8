@@ -2,7 +2,7 @@ FROM public.ecr.aws/docker/library/node:20 as install
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm ci && npx prisma generate
 
 
 FROM public.ecr.aws/docker/library/node:20 as build
