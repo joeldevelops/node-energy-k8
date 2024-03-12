@@ -8,6 +8,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      metadata: read
     steps:
       # Setup
       - uses: actions/checkout@v3
