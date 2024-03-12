@@ -15,7 +15,6 @@ RUN npx prisma generate && npm run build
 FROM public.ecr.aws/docker/library/node:20 as run
 
 WORKDIR /app
-COPY package*.json ./
-COPY --from=build /app/dist ./dist
+COPY --from=build /app .
 
 CMD ["npm", "run", "start:prod"]
