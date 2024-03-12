@@ -20,11 +20,11 @@ spec:
           image: "ghcr.io/joeldevelops/node-energy-k8"
           resources:
             limits:
-              memory: 256Mi
-              cpu: 300m
+              memory: 384Mi
+              cpu: 400m
             requests:
-              memory: 128Mi
-              cpu: 150m
+              memory: 200Mi
+              cpu: 200m
           ports:
             - name: api
               containerPort: 3000
