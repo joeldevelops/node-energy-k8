@@ -8,7 +8,7 @@ spec:
       app: application
       component: api
   template:
-    metadata:
+    metadata:ll
       labels:
         app: application
         component: api
@@ -21,10 +21,10 @@ spec:
           resources:
             limits:
               memory: 384Mi
-              cpu: 400m
+              cpu: 325m
             requests:
               memory: 200Mi
-              cpu: 200m
+              cpu: 175m
           ports:
             - name: api
               containerPort: 3000

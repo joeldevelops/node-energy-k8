@@ -5,11 +5,13 @@ export const userCreate = (host, http) => {
     name: utils.getRandomName(),
     email: utils.getRandomEmail(),
   };
-  http.post(`${host}/api/v1/users`, JSON.stringify(createPayload), {
+  const res = http.post(`${host}/api/v1/users`, JSON.stringify(createPayload), {
     headers: {
       'Content-Type': 'application/json',
     },
   });
+
+  return res.json().id;
 }
 
 export const userRead = (host, http) => {
@@ -17,9 +19,8 @@ export const userRead = (host, http) => {
 }
 
 export const userUpdate = (host, http) => {
-  // First, get a random user
-  const res = http.get(`${host}/api/v1/users/random`);
-  const userId = res.json().id;
+  // First, create a random user
+  const userId = userCreate(host, http);
 
   const updatePayload = {
     name: utils.getRandomName(),
@@ -33,9 +34,8 @@ export const userUpdate = (host, http) => {
 }
 
 export const userDelete = (host, http) => {
-  // First, get a random user
-  const res = http.get(`${host}/api/v1/users/random`);
-  const userId = res.json().id;
+  // First, create a random user
+  const userId = userCreate(host, http);
 
   if (!userId || userId < 0) {
     return;
@@ -45,20 +45,21 @@ export const userDelete = (host, http) => {
 }
 
 export const comicsCreate = (host, http) => {
-  // first, get a random user
-  const res = http.get(`${host}/api/v1/users/random`);
-  const userId = res.json().id;
+  // first, create a random user
+  const userId = userCreate(host, http);
 
   const createPayload = {
     name: utils.getRandomName(),
     author: utils.getRandomName(),
     userId: userId,
   };
-  http.post(`${host}/api/v1/comics`, JSON.stringify(createPayload), {
+  const res = http.post(`${host}/api/v1/comics`, JSON.stringify(createPayload), {
     headers: {
       'Content-Type': 'application/json',
     },
   });
+
+  return res.json().id;
 }
 
 export const comicsRead = (host, http) => {
@@ -66,9 +67,8 @@ export const comicsRead = (host, http) => {
 }
 
 export const comicsUpdate = (host, http) => {
-  // First, get a random comic
-  const res = http.get(`${host}/api/v1/comics/random`);
-  const comicId = res.json().id;
+  // First, create a random comic
+  const comicId = comicsCreate(host, http);
 
   const updatePayload = {
     name: utils.getRandomName(),
@@ -82,9 +82,8 @@ export const comicsUpdate = (host, http) => {
 }
 
 export const comicsDelete = (host, http) => {
-  // First, get a random comic
-  const res = http.get(`${host}/api/v1/comics/random`);
-  const comicId = res.json().id;
+  // First, create a random comic
+  const comicId = comicsCreate(host, http);
 
   if (!comicId || comicId < 0) {
     return;
@@ -98,9 +97,8 @@ export const comicsGenerateReport = (host, http, num) => {
 }
 
 export const collectionCreate = (host, http) => {
-  // First, get a random user
-  const res = http.get(`${host}/api/v1/users/random`);
-  const userId = res.json().id;
+  // First, create a random user
+  const userId = userCreate(host, http);
 
   // Then, get a comic from the user
   let comicId;
@@ -129,11 +127,13 @@ export const collectionCreate = (host, http) => {
     userId: userId,
     comicId: comicId,
   };
-  http.post(`${host}/api/v1/collections`, JSON.stringify(createPayload), {
+  const res = http.post(`${host}/api/v1/collections`, JSON.stringify(createPayload), {
     headers: {
       'Content-Type': 'application/json',
     },
   });
+
+  return res.json().id;
 }
 
 export const collectionRead = (host, http) => {
@@ -141,16 +141,8 @@ export const collectionRead = (host, http) => {
 }
 
 export const collectionUpdate = (host, http) => {
-  // First, get a random collection
-  let collectionId;
-  try {
-    const res = http.get(`${host}/api/v1/collections/random`);
-    collectionId = res.json().id;
-  } catch (e) {
-    collectionCreate(host, http);
-    const res = http.get(`${host}/api/v1/collections/random`);
-    collectionId = res.json().id;
-  }
+  // First, create a random collection
+  const collectionId = collectionCreate(host, http);
 
   const updatePayload = {
     name: utils.getRandomName(),
@@ -163,16 +155,8 @@ export const collectionUpdate = (host, http) => {
 }
 
 export const collectionDelete = (host, http) => {
-  // First, get a random collection
-  let collectionId;
-  try {
-    const res = http.get(`${host}/api/v1/collections/random`);
-    collectionId = res.json().id;
-  } catch (e) {
-    collectionCreate(host, http);
-    const res = http.get(`${host}/api/v1/collections/random`);
-    collectionId = res.json().id;
-  }
+  // First, create a random collection
+  const collectionId = collectionCreate(host, http);
 
   if (!collectionId || collectionId < 0) {
     return;

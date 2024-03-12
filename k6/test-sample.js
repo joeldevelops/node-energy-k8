@@ -4,8 +4,7 @@ import * as act from './actions.js';
 
 export const options = {
   stages: [
-    { duration: '30s', target: 25 },
-    { duration: '1m30s', target: 100 },
+    { duration: '1m', target: 100 },
     { duration: '20s', target: 0 },
   ],
 
@@ -68,7 +67,7 @@ export default function() {
 
   // Pick a random user to perform the action on
 
-  const host = 'http://nano-pi.local:30123';
+  const host = 'http://localhost:3000';
 
   const num = 37;
 
