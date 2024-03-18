@@ -1,21 +1,24 @@
 import * as utils from './utils.js';
 
+const params = {
+  timeout: '360s',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
 export const userCreate = (host, http) => {
   const createPayload = {
     name: utils.getRandomName(),
     email: utils.getRandomEmail(),
   };
-  const res = http.post(`${host}/api/v1/users`, JSON.stringify(createPayload), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const res = http.post(`${host}/api/v1/users`, JSON.stringify(createPayload), params);
 
   return res.json().id;
 }
 
 export const userRead = (host, http) => {
-  http.get(`${host}/api/v1/users/random`);
+  http.get(`${host}/api/v1/users/random`, params);
 }
 
 export const userUpdate = (host, http) => {
@@ -26,11 +29,7 @@ export const userUpdate = (host, http) => {
     name: utils.getRandomName(),
     email: utils.getRandomEmail(),
   };
-  http.put(`${host}/api/v1/users/${userId}`, JSON.stringify(updatePayload), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  http.put(`${host}/api/v1/users/${userId}`, JSON.stringify(updatePayload), params);
 }
 
 export const userDelete = (host, http) => {
@@ -41,7 +40,7 @@ export const userDelete = (host, http) => {
     return;
   }
 
-  http.del(`${host}/api/v1/users/${userId}`);
+  http.del(`${host}/api/v1/users/${userId}`, params);
 }
 
 export const comicsCreate = (host, http) => {
@@ -53,17 +52,13 @@ export const comicsCreate = (host, http) => {
     author: utils.getRandomName(),
     userId: userId,
   };
-  const res = http.post(`${host}/api/v1/comics`, JSON.stringify(createPayload), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const res = http.post(`${host}/api/v1/comics`, JSON.stringify(createPayload), params);
 
   return res.json().id;
 }
 
 export const comicsRead = (host, http) => {
-  http.get(`${host}/api/v1/comics/random`);
+  http.get(`${host}/api/v1/comics/random`, params);
 }
 
 export const comicsUpdate = (host, http) => {
@@ -74,11 +69,7 @@ export const comicsUpdate = (host, http) => {
     name: utils.getRandomName(),
     author: utils.getRandomName(),
   };
-  http.put(`${host}/api/v1/comics/${comicId}`, JSON.stringify(updatePayload), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  http.put(`${host}/api/v1/comics/${comicId}`, JSON.stringify(updatePayload), params);
 }
 
 export const comicsDelete = (host, http) => {
@@ -89,11 +80,11 @@ export const comicsDelete = (host, http) => {
     return;
   }
 
-  http.del(`${host}/api/v1/comics/${comicId}`);
+  http.del(`${host}/api/v1/comics/${comicId}`, params);
 }
 
 export const comicsGenerateReport = (host, http, num) => {
-  http.get(`${host}/api/v1/comics/generate-report/${num}`);
+  http.get(`${host}/api/v1/comics/generate-report/${num}`, params);
 }
 
 export const collectionCreate = (host, http) => {
@@ -103,7 +94,7 @@ export const collectionCreate = (host, http) => {
   // Then, get a comic from the user
   let comicId;
   try {
-    const res2 = http.get(`${host}/api/v1/comics/user/${userId}`);
+    const res2 = http.get(`${host}/api/v1/comics/user/${userId}`, params);
     const comics = res2.json();
     comicId = comics[0].id;
   } catch (e) {
@@ -113,11 +104,7 @@ export const collectionCreate = (host, http) => {
       author: utils.getRandomName(),
       userId: userId,
     };
-    const res3 = http.post(`${host}/api/v1/comics`, JSON.stringify(createPayload), {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const res3 = http.post(`${host}/api/v1/comics`, JSON.stringify(createPayload), params);
 
     comicId = res3.json().id;
   }
@@ -127,17 +114,13 @@ export const collectionCreate = (host, http) => {
     userId: userId,
     comicId: comicId,
   };
-  const res = http.post(`${host}/api/v1/collections`, JSON.stringify(createPayload), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const res = http.post(`${host}/api/v1/collections`, JSON.stringify(createPayload), params);
 
   return res.json().id;
 }
 
 export const collectionRead = (host, http) => {
-  http.get(`${host}/api/v1/collections/random`);
+  http.get(`${host}/api/v1/collections/random`, params);
 }
 
 export const collectionUpdate = (host, http) => {
@@ -147,11 +130,7 @@ export const collectionUpdate = (host, http) => {
   const updatePayload = {
     name: utils.getRandomName(),
   };
-  http.put(`${host}/api/v1/collections/${collectionId}`, JSON.stringify(updatePayload), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  http.put(`${host}/api/v1/collections/${collectionId}`, JSON.stringify(updatePayload), params);
 }
 
 export const collectionDelete = (host, http) => {
@@ -162,5 +141,5 @@ export const collectionDelete = (host, http) => {
     return;
   }
 
-  http.del(`${host}/api/v1/collections/${collectionId}`);
+  http.del(`${host}/api/v1/collections/${collectionId}`, params);
 }

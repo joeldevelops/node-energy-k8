@@ -4,8 +4,9 @@ import * as act from './actions.js';
 
 export const options = {
   stages: [
-    { duration: '1m', target: 100 },
-    { duration: '20s', target: 0 },
+    { duration: '5s', target: 85 },
+    { duration: '1m', target: 85 },
+    { duration: '5s', target: 0 },
   ],
 
   // The following section contains configuration options for execution of this
@@ -67,52 +68,63 @@ export default function() {
 
   // Pick a random user to perform the action on
 
-  const host = 'http://localhost:3000';
+  const host = 'http://nano-pi.local:30123';
 
-  const num = 37;
-
+  const num = 33;
+  
   // Perform the action
   switch (action) {
     case 'user-create':
+      sleep(1);
       act.userCreate(host, http);
       break;
     case 'user-read':
+      sleep(1);
       act.userRead(host, http);
       break;
     case 'user-update':
+      sleep(2);
       act.userUpdate(host, http);
       break;
     case 'user-del':
+      sleep(2);
       act.userDelete(host, http);
       break;
     case 'compute':
+      sleep(1);
       act.comicsGenerateReport(host, http, num);
       break;
     case 'comic-create':
+      sleep(2);
       act.comicsCreate(host, http);
       break;
     case 'comic-read':
+      sleep(1);
       act.comicsRead(host, http);
       break;
     case 'comic-update':
+      sleep(3);
       act.comicsUpdate(host, http);
       break;
     case 'comic-del':
+      sleep(3);
       act.comicsDelete(host, http);
       break;
     case 'collection-create':
+      sleep(3);
       act.collectionCreate(host, http);
       break;
     case 'collection-read':
+      sleep(1);
       act.collectionRead(host, http);
       break;
     case 'collection-update':
+      sleep(5);
       act.collectionUpdate(host, http);
       break;
     case 'collection-del':
+      sleep(5);
       act.collectionDelete(host, http);
       break;
   }
-
-  sleep(1);
 }

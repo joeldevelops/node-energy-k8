@@ -8,7 +8,7 @@ spec:
       app: application
       component: api
   template:
-    metadata:ll
+    metadata:
       labels:
         app: application
         component: api
@@ -20,11 +20,11 @@ spec:
           image: "ghcr.io/joeldevelops/node-energy-k8"
           resources:
             limits:
-              memory: 384Mi
-              cpu: 325m
+              memory: 600Mi
+              cpu: 415m
             requests:
-              memory: 200Mi
-              cpu: 175m
+              memory: 300Mi
+              cpu: 200m
           ports:
             - name: api
               containerPort: 3000
