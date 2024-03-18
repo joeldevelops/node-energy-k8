@@ -6,102 +6,6 @@ import * as act from './actions.js';
 
 export const options = {
   stages: [
-    // { duration: '15m', target: 32 },
-    // { duration: '15m', target: 32 },
-    // { duration: '15m', target: 28 },
-    // { duration: '15m', target: 21 },
-    // { duration: '15m', target: 15 },
-    // { duration: '15m', target: 18 },
-    // { duration: '15m', target: 17 },
-    // { duration: '15m', target: 18 },
-    // { duration: '15m', target: 16 },
-    // { duration: '15m', target: 20 },
-    // { duration: '15m', target: 17 },
-    // { duration: '15m', target: 14 },
-    // { duration: '15m', target: 10 },
-    // { duration: '15m', target: 8 },
-    // { duration: '15m', target: 5 },
-    // { duration: '15m', target: 2 },
-    // { duration: '15m', target: 0 },
-    // { duration: '15m', target: 1 },
-    // { duration: '15m', target: 0 },
-    // { duration: '15m', target: 1 },
-    // { duration: '15m', target: 2 },
-    // { duration: '15m', target: 13 },
-    // { duration: '15m', target: 17 },
-    // { duration: '15m', target: 22 },
-    // { duration: '15m', target: 29 },
-    // { duration: '15m', target: 41 },
-    // { duration: '15m', target: 50 },
-    // { duration: '15m', target: 60 },
-    // { duration: '15m', target: 67 },
-    { duration: '15m', target: 75 },
-    { duration: '15m', target: 82 },
-    { duration: '15m', target: 85 },
-    { duration: '15m', target: 90 },
-    { duration: '15m', target: 92 },
-    { duration: '15m', target: 96 },
-    { duration: '15m', target: 99 },
-    { duration: '15m', target: 100 },
-    { duration: '15m', target: 99 },
-    { duration: '15m', target: 96 },
-    { duration: '15m', target: 95 },
-    { duration: '15m', target: 93 },
-    { duration: '15m', target: 90 },
-    { duration: '15m', target: 87 },
-    { duration: '15m', target: 85 },
-    { duration: '15m', target: 83 },
-    { duration: '15m', target: 81 },
-    { duration: '15m', target: 79 },
-    { duration: '15m', target: 79 },
-    { duration: '15m', target: 79 },
-    { duration: '15m', target: 75 },
-    { duration: '15m', target: 71 },
-    { duration: '15m', target: 68 },
-    { duration: '15m', target: 62 },
-    { duration: '15m', target: 60 },
-    { duration: '15m', target: 56 },
-    { duration: '15m', target: 53 },
-    { duration: '15m', target: 51 },
-    { duration: '15m', target: 53 },
-    { duration: '15m', target: 52 },
-    { duration: '15m', target: 51 },
-    { duration: '15m', target: 49 },
-    { duration: '15m', target: 50 },
-    { duration: '15m', target: 46 },
-    { duration: '15m', target: 44 },
-    { duration: '15m', target: 41 },
-    { duration: '15m', target: 39 },
-    { duration: '15m', target: 37 },
-    { duration: '15m', target: 34 },
-    { duration: '15m', target: 33 },
-    { duration: '15m', target: 34 },
-    { duration: '15m', target: 35 },
-    { duration: '15m', target: 39 },
-    { duration: '15m', target: 43 },
-    { duration: '15m', target: 51 },
-    { duration: '15m', target: 57 },
-    { duration: '15m', target: 68 },
-    { duration: '15m', target: 79 },
-    { duration: '15m', target: 88 },
-    { duration: '15m', target: 90 },
-    { duration: '15m', target: 87 },
-    { duration: '15m', target: 82 },
-    { duration: '15m', target: 77 },
-    { duration: '15m', target: 69 },
-    { duration: '15m', target: 63 },
-    { duration: '15m', target: 56 },
-    { duration: '15m', target: 51 },
-    { duration: '15m', target: 47 },
-    { duration: '15m', target: 44 },
-    { duration: '15m', target: 39 },
-    { duration: '15m', target: 41 },
-    { duration: '15m', target: 38 },
-    { duration: '15m', target: 49 },
-    { duration: '15m', target: 47 },
-    { duration: '15m', target: 43 },
-    { duration: '15m', target: 40 },
-    { duration: '15m', target: 40 },
   ],
 
   // The following section contains configuration options for execution of this
@@ -165,50 +69,61 @@ export default function () {
 
   const host = 'http://nano-pi.local:30123';
 
-  const num = 37;
-
+  const num = 33;
+  
   // Perform the action
   switch (action) {
     case 'user-create':
+      sleep(1);
       act.userCreate(host, http);
       break;
     case 'user-read':
+      sleep(1);
       act.userRead(host, http);
       break;
     case 'user-update':
+      sleep(2);
       act.userUpdate(host, http);
       break;
     case 'user-del':
+      sleep(2);
       act.userDelete(host, http);
       break;
     case 'compute':
+      sleep(1);
       act.comicsGenerateReport(host, http, num);
       break;
     case 'comic-create':
+      sleep(2);
       act.comicsCreate(host, http);
       break;
     case 'comic-read':
+      sleep(1);
       act.comicsRead(host, http);
       break;
     case 'comic-update':
+      sleep(3);
       act.comicsUpdate(host, http);
       break;
     case 'comic-del':
+      sleep(3);
       act.comicsDelete(host, http);
       break;
     case 'collection-create':
+      sleep(3);
       act.collectionCreate(host, http);
       break;
     case 'collection-read':
+      sleep(1);
       act.collectionRead(host, http);
       break;
     case 'collection-update':
+      sleep(5);
       act.collectionUpdate(host, http);
       break;
     case 'collection-del':
+      sleep(5);
       act.collectionDelete(host, http);
       break;
   }
-
-  sleep(1);
 }
