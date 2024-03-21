@@ -1,12 +1,12 @@
 FROM ghcr.io/openfaas/classic-watchdog:0.2.3 as watchdog
 
-FROM node:18-alpine as install
+FROM public.ecr.aws/docker/library/node:20-alpine as install
 
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-FROM node:18-alpine as ship
+FROM public.ecr.aws/docker/library/node:20-alpine as ship
 
 RUN mkdir -p /app
 
