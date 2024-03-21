@@ -13,13 +13,7 @@ RUN mkdir -p /app
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
-# Add non root user
-RUN addgroup -S app && adduser app -S -G app
-RUN chown app /app
-
 WORKDIR /app
-
-USER app
 
 COPY --from=install /app .
 COPY . .
