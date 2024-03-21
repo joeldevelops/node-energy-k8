@@ -1,0 +1,245 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  col-create:
+    lang: dockerfile
+    handler: ./col-create
+    image: col-create:latest
+    annotations:
+      topic: "col-create"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  col-delete:
+    lang: dockerfile
+    handler: ./col-delete
+    image: col-delete:latest
+    annotations:
+      topic: "col-delete"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  col-random:
+    lang: dockerfile
+    handler: ./col-random
+    image: col-random:latest
+    annotations:
+      topic: "col-random"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  col-read:
+    lang: dockerfile
+    handler: ./col-read
+    image: col-read:latest
+    annotations:
+      topic: "col-read"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  col-update:
+    lang: dockerfile
+    handler: ./col-update
+    image: col-update:latest
+    annotations:
+      topic: "col-update"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  comics-compute:
+    lang: dockerfile
+    handler: ./comics-compute
+    image: comics-compute:latest
+    annotations:
+      topic: "comics-compute"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  comics-create:
+    lang: dockerfile
+    handler: ./comics-create
+    image: comics-create:latest
+    annotations:
+      topic: "comics-create"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  comics-delete:
+    lang: dockerfile
+    handler: ./comics-delete
+    image: comics-delete:latest
+    annotations:
+      topic: "comics-delete"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  comics-random:
+    lang: dockerfile
+    handler: ./comics-random
+    image: comics-random:latest
+    annotations:
+      topic: "comics-random"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  comics-read:
+    lang: dockerfile
+    handler: ./comics-read
+    image: comics-read:latest
+    annotations:
+      topic: "comics-read"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  comics-update:
+    lang: dockerfile
+    handler: ./comics-update
+    image: comics-update:latest
+    annotations:
+      topic: "comics-update"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  users-update:
+    lang: dockerfile
+    handler: ./users-update
+    image: users-update:latest
+    annotations:
+      topic: "users-update"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  users-create:
+    lang: dockerfile
+    handler: ./users-create
+    image: users-create:latest
+    annotations:
+      topic: "users-create"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  users-delete:
+    lang: dockerfile
+    handler: ./users-delete
+    image: users-delete:latest
+    annotations:
+      topic: "users-delete"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  users-random:
+    lang: dockerfile
+    handler: ./users-random
+    image: users-random:latest
+    annotations:
+      topic: "users-random"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
+  users-read:
+    lang: dockerfile
+    handler: ./users-read
+    image: users-read:latest
+    annotations:
+      topic: "users-read"
+      com.openfaas.scale.min: "0"
+      com.openfaas.scale.max: "3"
+      com.openfaas.scale.zero: "true"
+      com.openfaas.scale.zero-duration: "1m"
+      com.openfaas.ready.http.path: "/api/v1/readiness"
+      com.openfaas.health.http.path: "/api/v1/liveness"
+    environment_file:
+      - ./env.yml
+
