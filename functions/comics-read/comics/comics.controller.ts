@@ -1,14 +1,10 @@
 import {
-  Body,
   Controller,
-  Delete,
   Get,
   Param,
-  Post,
-  Put,
 } from '@nestjs/common';
 import { ComicsService } from './comics.service';
-import { Prisma, Comic } from '@prisma/client';
+import { Comic } from '@prisma/client';
 
 @Controller('comics')
 export class ComicsController {

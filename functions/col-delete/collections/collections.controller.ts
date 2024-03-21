@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Param } from '@nestjs/common';
 import { CollectionsService } from './collections.service';
-import { Prisma, Collection } from '@prisma/client';
+import { Collection } from '@prisma/client';
 
 @Controller('collections')
 export class CollectionsController {
