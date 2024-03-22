@@ -1,4 +1,4 @@
-FROM openfaas/of-watchdog:0.7.2 as watchdog
+FROM ghcr.io/openfaas/of-watchdog:0.9.15 as watchdog
 
 FROM public.ecr.aws/docker/library/node:20-alpine as install
 
