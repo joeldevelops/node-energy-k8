@@ -68,7 +68,7 @@ export default function () {
 
   // Pick a random user to perform the action on
 
-  const host = 'http://10.147.17.239:8080';
+  const host = 'http://nano-pi.local:8080';
 
   const num = 30;
   
