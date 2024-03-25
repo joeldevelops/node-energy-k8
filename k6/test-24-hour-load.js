@@ -6,6 +6,7 @@ import * as act from './actions.js';
 
 export const options = {
   stages: [
+    { duration: '2m', target: 50 },
   ],
 
   // The following section contains configuration options for execution of this
@@ -67,9 +68,9 @@ export default function () {
 
   // Pick a random user to perform the action on
 
-  const host = 'http://nano-pi.local:30123';
+  const host = 'http://10.147.17.239:8080';
 
-  const num = 33;
+  const num = 30;
   
   // Perform the action
   switch (action) {
