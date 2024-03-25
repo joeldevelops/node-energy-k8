@@ -57,7 +57,7 @@ export const options = {
 // about authoring k6 scripts.
 //
 export default function() {
-  const host = 'http://nano-pi.local:30123';
+  const host = 'http://10.147.17.239:8080/function/users-create';
   const createPayload = {
     name: utils.getRandomName(),
     email: utils.getRandomEmail(),
